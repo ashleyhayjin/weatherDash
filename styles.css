@@ -1,0 +1,9 @@
+.card {
+  position: absolute;
+  right: 150px;
+}
+
+.card-input {
+  position: relative;
+  top: 100px;
+}
