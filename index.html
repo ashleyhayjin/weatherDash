@@ -24,23 +24,28 @@
         </div>
        
       </div> -->
-      <div class="card card-search" style="width: 18rem;">
+      <div class="card card-search" style="width: 18rem">
         <div class="card-body">
-            <h1>Search for Cities</h1>
-            <input type="text" placeholder="Search..">
-            <button class="submit-btn btn-primary">Submit</button> 
-            <div id="cityList"></div>        
+          <h1>Search for Cities</h1>
+          <input class="city-input" type="text" placeholder="Search.." />
+          <button class="submit-btn btn-primary">Submit</button>
+          <div id="cityList"></div>
         </div>
       </div>
-      <!-- Displays Weather -->
-      <div class="card card-weather" style="width: 30rem; height: 25rem;">
-         <div class="card-body">
-            <h5 class="card-title">City Name</h5>
-            <p class="card-text"></p>
+      <!-- Displays Weather THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+WHEN I view the UV index-->
+      <div class="card card-weather" style="width: 30rem; height: 25rem">
+        <div class="card-body">
+          <h5 class="city"></h5>
+          <p class="date"></p>
+          <p class="icon"></p>
+          <p class="temp"></p>
+          <p class="humidity"></p>
+          <p class="wind"></p>
+          <p class="uv"></p>
         </div>
-
-        <!-- 5 Day Forecast -->
       </div>
+      <!-- 5 Day Forecast -->
     </div>
     <!-- Jquery and JS file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
