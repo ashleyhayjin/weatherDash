@@ -1,14 +1,11 @@
 var apiKey = "c3de2d2c940e3b4a114f178684ecc6fd";
-var city = localStorage.getItem("savedCity");
-var savedCity = [];
+var currentCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+// var city = "";
+// console.log("What City:", city);
 // var cityList;
 // var city = "Austin";
 // query URL for one day forcast in a city
-var queryUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&appid=" +
-  apiKey;
+
 
 $(".submit-btn").click(function () {
   var dataCity = {
@@ -31,23 +28,43 @@ $(".submit-btn").click(function () {
       // if (obj.length > 0){
     }
     myDiv.append(paragraph);
-
+    getTheWeather()
   }
 
   cityListPage();
 });
 
 // function to get weather for a specific city
-async function getWeather() {
-  const resp = await fetch(queryUrl, {
-    method: "GET",
-  });
+function getTheWeather (city){ 
+  var city = $(".city-input").val();
+  var currentQuery = "";
+  console.log(city); 
+  getWeather(); 
+  
+ 
+  
+  async function getWeather() {
+    if (city !== ""){
+        currentQuery = currentCityUrl + city + "&appid=" + apiKey;
+        console.log(currentQuery);
+    } else {
+        console.log("You need an input");
+    };
+   
+    const resp = await fetch(currentQuery, {
+      method: "GET",
+    });
 
-  const data = await resp.json();
+    const data = await resp.json();
 
-  console.log(data);
+    console.log(data);
 
-  var cityWeather = data.main.temp;
+    var cityWeather = data.main.temp;
+    var fahrenheit = Math.trunc((cityWeather - 273.15) * 1.8 + 32);
+    console.log("Current Weather in " + city, fahrenheit);
+}
+// end of the function
 }
 
-getWeather();
+
+
