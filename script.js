@@ -67,13 +67,30 @@ function getTheWeather() {
     tempDisplay.textContent = "Current Temperature : " + fahrenheit + "\u00B0" + "F";
     var humidityDisplay = document.querySelector(".humidity");
     humidityDisplay.textContent = "Humidity : " + data.main.humidity + "%";
-    var windDisplay = querySelector(".wind");
+    var windDisplay = document.querySelector(".wind");
     windDisplay.textContent = "Wind Speed : "+ data.wind.speed + " MPH";
-    // var uvDisplay = document.querySelector(".uv");
-    // uvDisplay.textContent = data.
+    var lon = data.coord.lon;
+    var lat = data.coord.lat;
 
+
+    var uvSite = "https://api.openweathermap.org/data/2.5/uvi?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey;
+    console.log(uvSite);
+
+    async function getUV() {
     
-  }
 
+      const response = await fetch(uvSite, {
+        method: "GET",
+      });
+
+      const uvData = await response.json();
+      var uvDisplay = document.querySelector(".uv");
+      uvDisplay.textContent = "UV : " + uvData.value;
+
+      // IF statement for color changes to UV
+      
+    }
+    getUV();
+  };
   // end of the function
 }
