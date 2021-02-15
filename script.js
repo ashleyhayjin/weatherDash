@@ -1,10 +1,5 @@
 var apiKey = "c3de2d2c940e3b4a114f178684ecc6fd";
 var currentCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-// var city = "";
-// console.log("What City:", city);
-// var cityList;
-// var city = "Austin";
-// query URL for one day forcast in a city
 
 
 $(".submit-btn").click(function () {
@@ -28,43 +23,57 @@ $(".submit-btn").click(function () {
       // if (obj.length > 0){
     }
     myDiv.append(paragraph);
-    getTheWeather()
+    getTheWeather();
   }
 
   cityListPage();
 });
 
 // function to get weather for a specific city
-function getTheWeather (city){ 
+function getTheWeather() {
   var city = $(".city-input").val();
   var currentQuery = "";
-  console.log(city); 
-  getWeather(); 
-  
- 
-  
+  console.log(city);
+  getWeather();
+
   async function getWeather() {
-    if (city !== ""){
-        currentQuery = currentCityUrl + city + "&appid=" + apiKey;
-        console.log(currentQuery);
+    if (city !== "") {
+      currentQuery = currentCityUrl + city + "&appid=" + apiKey;
+      console.log(currentQuery);
     } else {
-        console.log("You need an input");
-    };
-   
+      console.log("You need an input");
+    }
+
     const resp = await fetch(currentQuery, {
       method: "GET",
     });
 
     const data = await resp.json();
-
-    console.log(data);
-
+    var iconNum = data.weather[0].icon;
     var cityWeather = data.main.temp;
     var fahrenheit = Math.trunc((cityWeather - 273.15) * 1.8 + 32);
-    console.log("Current Weather in " + city, fahrenheit);
+    var currentDay = $("#currentDay");
+    // var now = moment().toDate();
+    // console.log(now);
+    // Append to the page
+    var cityDisplay = document.querySelector(".city")
+    cityDisplay.textContent = city; 
+    var dateDisplay = document.querySelector(".date");
+    dateDisplay.textContent = moment().format("(MM-DD-YYYY)");
+    var iconSite = "https://openweathermap.org/img/wn/"
+    var iconLink = iconSite + iconNum + "@2x.png"
+    var iconDisplay = document.querySelector(".icon").setAttribute("src", iconLink);
+    var tempDisplay = document.querySelector(".temp");
+    tempDisplay.textContent = "Current Temperature : " + fahrenheit + "\u00B0" + "F";
+    var humidityDisplay = document.querySelector(".humidity");
+    humidityDisplay.textContent = "Humidity : " + data.main.humidity + "%";
+    var windDisplay = querySelector(".wind");
+    windDisplay.textContent = "Wind Speed : "+ data.wind.speed + " MPH";
+    // var uvDisplay = document.querySelector(".uv");
+    // uvDisplay.textContent = data.
+
+    
+  }
+
+  // end of the function
 }
-// end of the function
-}
-
-
-
