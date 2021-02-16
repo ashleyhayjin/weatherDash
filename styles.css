@@ -1,11 +1,26 @@
-.card-weather {
-  position: absolute;
-  right: 150px;
-  top: 220px;
+.weather-whole {
+  margin: 0px;
+  max-height: 350px;
+}
+.weather-display {
+  left: 18%;
+  max-width: 50%;
+  max-height: 25%;
 }
 
-.card-search {
+.card-weather {
+  max-height: 50%;
+  font-size: medium;
+  text-align: center;
+}
+
+.five-day-display {
   position: relative;
-  top: 220px;
-  left: 150px;
+  margin: 15px;
+  left: 18%;
+}
+
+.img-Forecast {
+  width: 40%;
+  height: 40%;
 }
